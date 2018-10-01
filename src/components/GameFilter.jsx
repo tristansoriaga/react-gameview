@@ -1,36 +1,33 @@
 import React, { Component } from "react";
+import Select from "react-select";
 
 class GameFilter extends Component {
   styledCss = {
     paddingTop: 20
   };
 
+  buttonCss = {
+    width: 80
+  };
+
+  gameCategory = [
+    { label: "All", value: "all" },
+    { label: "Adventure", value: "adventure" },
+    { label: "Horror", value: "horror" },
+    { label: "RPG", value: "rpg" }
+  ];
+
   render() {
     return (
       <div style={this.styledCss}>
-        <button className="btn btn-primary m-2">Add</button>
-        <div className="btn-group">
-          <button
-            className="btn btn-secondary btn-md dropdown-toggle"
-            type="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            Filter
-          </button>
-          <div className="dropdown-menu">
-            <a className="dropdown-item" href="#/adventure">
-              Adventure
-            </a>
-            <a className="dropdown-item" href="#/horror">
-              Horror
-            </a>
-            <a className="dropdown-item" href="#/rpg">
-              RPG
-            </a>
-          </div>
-        </div>
+        <button onClick={this.props.onAdd} className="btn btn-primary m-2">
+          Add
+        </button>
+        <Select
+          style={this.styledCss}
+          options={this.gameCategory}
+          onChange={opt => this.props.onFilter(opt.value)}
+        />
       </div>
     );
   }

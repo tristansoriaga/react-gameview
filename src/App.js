@@ -4,6 +4,8 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Route } from "react-router-dom";
+import GlobalNav from "./components/GlobalNav";
+
 import GameList from "./components/GameList";
 import GameView from "./components/GameView";
 
@@ -44,7 +46,9 @@ class App extends Component {
     console.log("add");
   };
 
-  handleClickView = () => {
+  handleClickView = id => {
+    const games = this.state.games.filter(game => game.id === id);
+    this.setState({ games });
     console.log("view");
   };
 
@@ -66,12 +70,12 @@ class App extends Component {
   constructor() {
     super();
     this.baseState = this.state;
-    console.log("filter");
   }
 
   render() {
     return (
       <div className="App">
+        <GlobalNav />
         <header className="App-header">
           <a href="/">
             <img src={logo} className="App-logo" alt="logo" />
@@ -79,15 +83,24 @@ class App extends Component {
           <h1 className="App-title">Playstation Games</h1>
         </header>
         <main>
-          <GameList
-            onAdd={this.handleClickAdd}
-            onFilter={this.handleClickFilter}
-            onView={this.handleClickView}
-            onDelete={this.handleClickDelete}
-            games={this.state.games}
+          <Route
+            exact
+            path="/"
+            component={() => (
+              <GameList
+                onAdd={this.handleClickAdd}
+                onFilter={this.handleClickFilter}
+                onView={this.handleClickView}
+                onDelete={this.handleClickDelete}
+                games={this.state.games}
+              />
+            )}
           />
-
-          <Route exact path="/game/:id" component={GameView} />
+          <Route
+            exact
+            path="/ps4/game/:id"
+            component={() => <GameView games={this.state.games} />}
+          />
         </main>
       </div>
     );

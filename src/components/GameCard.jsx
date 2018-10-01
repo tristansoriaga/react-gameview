@@ -25,8 +25,8 @@ class GameCard extends Component {
 
           <div>
             <NavLink
-              to={`/game/${this.props.game.id}`}
-              onClick={this.props.onView}
+              to={`/ps4/game/${this.props.game.id}`}
+              onClick={() => this.props.onView(this.props.game.id)}
               className="btn btn-primary m-2"
             >
               View

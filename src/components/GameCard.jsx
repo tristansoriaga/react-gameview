@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 
 class GameCard extends Component {
-  styleCss = {
+  styledCss = {
     padding: 5,
     textAlign: "center",
     margin: "0 auto",
@@ -12,8 +12,9 @@ class GameCard extends Component {
   render() {
     return (
       <div className="col-xs-12 col-sm-12 col-md-6 col-lg-4">
-        <div style={this.styleCss}>
+        <div style={this.styledCss}>
           <img
+            alt={this.props.game.title}
             className="p-2"
             src={this.props.game.imgUrl}
             width="200"

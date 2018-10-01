@@ -1,7 +1,8 @@
 import React, { Component } from "react";
-import logo from "./logo.svg";
+import logo from "./ps4-logo.jpg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 import GameList from "./components/GameList";
 import GameFilter from "./components/GameFilter";
@@ -52,12 +53,14 @@ class App extends Component {
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Game View</h1>
         </header>
-        <GameFilter />
-        <GameList
-          onView={this.handleClickView}
-          onDelete={this.handleClickDelete}
-          games={this.state.games}
-        />
+        <main>
+          <GameFilter />
+          <GameList
+            onView={this.handleClickView}
+            onDelete={this.handleClickDelete}
+            games={this.state.games}
+          />
+        </main>
       </div>
     );
   }

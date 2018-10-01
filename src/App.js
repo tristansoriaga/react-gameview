@@ -28,6 +28,13 @@ class App extends Component {
         title: "Witcher 3",
         imgUrl:
           "https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_geralt_with_trophies_2560x1600_1449484679.png"
+      },
+      {
+        id: 4,
+        category: "rpg",
+        title: "Witcher 3",
+        imgUrl:
+          "https://static.cdprojektred.com/thewitcher.com/media/wallpapers/witcher3/full/witcher3_en_wallpaper_the_witcher_3_wild_hunt_geralt_with_trophies_2560x1600_1449484679.png"
       }
     ]
   };
@@ -37,20 +44,24 @@ class App extends Component {
   };
 
   handleClickDelete = id => {
-    let state = this.state;
-    const games = state.games.filter(game => game.id !== id);
+    const games = this.state.games.filter(game => game.id !== id);
     this.setState({ games });
     console.log("delete");
   };
 
   handleClickFilter = filter => {
     console.log(filter);
-
-    const games = this.state.games.filter(game => game.category === filter);
-    this.setState({ games });
+    const basestate = this.baseState.games;
+    const games = basestate.filter(game => game.category === filter);
+    games.length === 0
+      ? this.setState({ ...this.baseState })
+      : this.setState({ games });
   };
 
-  filter;
+  constructor() {
+    super();
+    this.baseState = this.state;
+  }
 
   render() {
     return (

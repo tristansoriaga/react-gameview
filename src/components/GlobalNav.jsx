@@ -2,26 +2,41 @@ import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
 
 class GlobalNav extends Component {
-  styledCss = {
-    backgroundColor: "black",
-    color: "white",
-    paddingLeft: 50
-  };
-
-  navCss = {
-    color: "white"
-  };
   render() {
     return (
-      <div style={this.styledCss}>
+      <div
+        style={{
+          backgroundColor: "black",
+          color: "white",
+          paddingLeft: 50
+        }}
+      >
         <nav className="nav">
-          <NavLink style={this.navCss} className="nav-link active" to="/">
+          <NavLink
+            exact
+            activeStyle={{ color: "gray" }}
+            style={{ color: "white" }}
+            className="nav-link active"
+            to="/home"
+          >
             Home
           </NavLink>
-          <NavLink style={this.navCss} className="nav-link" to="/ps4">
+          <NavLink
+            exact
+            activeStyle={{ color: "gray" }}
+            style={{ color: "white" }}
+            className="nav-link"
+            to="/ps4"
+          >
             PS4
           </NavLink>
-          <NavLink style={this.navCss} className="nav-link" to="/xbox">
+          <NavLink
+            exact
+            activeStyle={{ color: "gray" }}
+            style={{ color: "white" }}
+            className="nav-link"
+            to="/xbox"
+          >
             XBOX
           </NavLink>
         </nav>

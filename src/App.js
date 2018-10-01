@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import logo from "./ps4-logo.jpg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -8,6 +7,7 @@ import GlobalNav from "./components/GlobalNav";
 
 import GameList from "./components/GameList";
 import GameView from "./components/GameView";
+import GlobalHeader from "./components/GlobalHeader";
 
 class App extends Component {
   state = {
@@ -76,16 +76,11 @@ class App extends Component {
     return (
       <div className="App">
         <GlobalNav />
-        <header className="App-header">
-          <a href="/">
-            <img src={logo} className="App-logo" alt="logo" />
-          </a>
-          <h1 className="App-title">Playstation Games</h1>
-        </header>
+        <GlobalHeader />
         <main>
           <Route
             exact
-            path="/"
+            path="/(home|ps4)/"
             component={() => (
               <GameList
                 onAdd={this.handleClickAdd}
@@ -99,6 +94,11 @@ class App extends Component {
           <Route
             exact
             path="/ps4/game/:id"
+            component={() => <GameView games={this.state.games} />}
+          />
+          <Route
+            exact
+            path="/xbox/game/:id"
             component={() => <GameView games={this.state.games} />}
           />
         </main>

@@ -3,8 +3,9 @@ import logo from "./ps4-logo.jpg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
+import { Route } from "react-router-dom";
 import GameList from "./components/GameList";
-import GameFilter from "./components/GameFilter";
+import GameView from "./components/GameView";
 
 class App extends Component {
   state = {
@@ -43,6 +44,10 @@ class App extends Component {
     console.log("add");
   };
 
+  handleClickView = () => {
+    console.log("view");
+  };
+
   handleClickDelete = id => {
     const games = this.state.games.filter(game => game.id !== id);
     this.setState({ games });
@@ -50,7 +55,7 @@ class App extends Component {
   };
 
   handleClickFilter = filter => {
-    console.log(filter);
+    console.log("filter");
     const basestate = this.baseState.games;
     const games = basestate.filter(game => game.category === filter);
     games.length === 0
@@ -61,25 +66,28 @@ class App extends Component {
   constructor() {
     super();
     this.baseState = this.state;
+    console.log("filter");
   }
 
   render() {
     return (
       <div className="App">
         <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Game View</h1>
+          <a href="/">
+            <img src={logo} className="App-logo" alt="logo" />
+          </a>
+          <h1 className="App-title">Playstation Games</h1>
         </header>
         <main>
-          <GameFilter
+          <GameList
             onAdd={this.handleClickAdd}
             onFilter={this.handleClickFilter}
-          />
-          <GameList
             onView={this.handleClickView}
             onDelete={this.handleClickDelete}
             games={this.state.games}
           />
+
+          <Route exact path="/game/:id" component={GameView} />
         </main>
       </div>
     );
